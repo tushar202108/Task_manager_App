@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require ('path');
 
 const app = express();
-const PORT = 3000;
+const PORT =  process.env.PORT || 3000;
+app.use(express.static(__dirname +"/UI"));
 
 let tasks = [
     { id: 1, title: 'Task 1', description: 'Description for Task 1', dueDate: '2024-06-25' },
@@ -13,6 +15,11 @@ let nextTaskId = 3;
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 
 app.get('/api/tasks', (req, res) => {
     res.json(tasks);
