@@ -5,7 +5,7 @@ const path = require ('path');
 
 const app = express();
 const PORT =  process.env.PORT || 3000;
-app.use(express.static(__dirname +"/UI"));
+app.use(express.static(__dirname +"/User"));
 
 let tasks = [
     { id: 1, title: 'Task 1', description: 'Description for Task 1', dueDate: '2024-06-25' },
